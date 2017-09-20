@@ -85,7 +85,7 @@ import numpy as np
 from keras.preprocessing import image
 
 #Load the image
-test_image = image.load_img('dataset/single_prediction/cat.jpg',target_size=(64, 64))
+test_image = image.load_img('dataset/single_prediction/dog2.jpg',target_size=(64, 64))
 #Change to a 3 Dimensional array because it is a colour image
 test_image = image.img_to_array(test_image)
 #add a forth dimension
@@ -94,12 +94,12 @@ result = classifier.predict(test_image)
 training_set.class_indices
 
 #treshold of 50% to classify the image
-if result[0][0] <= 0.5:
-    prediction = 'dog'
+if result[0][0] > 0.5:
+    prediction = 'DOG'
 else:
-    prediction = 'cat'
-    
-print('Prediction:', prediction)
+    prediction = 'CAT'
+        
+print(result[0][0], "% certainty of being a", prediction)    
 
 
 
